@@ -7,11 +7,18 @@
     <title>Horoskop</title>
     <link rel="stylesheet" href="/style.css">
     <script defer src="/logic.js"></script>
+    <script src="https://kit.fontawesome.com/e8127072bf.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <input type="date" id="input">
-    <button onclick="add()">Spara horoskop</button>
-    <button onclick="update()">Ändra horoskop</button>
-    <button onclick="erase()">Radera horoskop</button>
+    <div id="divForInputAndButtons">
+        <input type="date" id="input">
+        <button class="buttonStyle" onclick="add()">Spara horoskop<i class="fas fa-check"></i></button>
+        <button class="buttonStyle" onclick="update()">Ändra horoskop <i class="fas fa-pen"></i></button>
+        <button class="buttonStyle" onclick="erase()">Radera horoskop <i class="fas fa-trash-alt"></i></button>
+    </div>
+    <div id="showHoroscope">
+        <h3>Här ska stjärntecknet printas senare..</h3>
+        <!-- Stjärntecken kommer printas här via javascript/php -->
+    </div>
 </body>
 </html>
