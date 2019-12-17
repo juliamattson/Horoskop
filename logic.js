@@ -8,8 +8,10 @@ function add() {
     let formData = new FormData()
     formData.set("date", inputDate) 
     makeRequest(url, method, formData, (result) => {
-    console.log(result);
-        // kalla på get för att kunna printa ut horoscope på sidan  
+        console.log(result);       
+        if(result) {
+            printHoroscope() 
+        }
     })
 }
  
@@ -20,22 +22,26 @@ function update() {
     
     let formData = new FormData()
     formData.set("date", inputDate) 
-    makeRequest(url, method, formData, (result) => {
-    console.log(result);
-        // kalla på get för att kunna printa ut horoscope på sidan  
+        makeRequest(url, method, formData, (result) => {
+        console.log(result);
+        if(result) {
+            printHoroscope() 
+        }
     })
 }
  
 function erase() {  
     let inputDate = document.getElementById('input').value
     let url = "./serverSide/deleteHoroscope.php"
-    let method = "POST"
+    let method = "DELETE"
     
     let formData = new FormData()
     formData.set("date", inputDate) 
-    makeRequest(url, method, formData, (result) => {
-    console.log(result);
-        // kalla på get för att kunna printa ut horoscope på sidan  
+        makeRequest(url, method, formData, (result) => {
+        console.log(result);
+        if(result) {
+            printHoroscope() 
+        }
     })
 }
  
@@ -44,11 +50,23 @@ function makeRequest(url, method, formData, callback) {
         method: method,
         body: formData
     }).then((response) => {
-        console.log(response)
         return response.json()
     }).then((result) => {
         callback(result)
-    }).catch((err)=>{
+    }).catch((err) => {
         console.log("Error: ", err)
     })   
 }
+
+function printHoroscope() {
+    makeRequest("./serverSide/viewHoroscope.php", "GET", undefined, (result) => {
+        if(result) {
+            document.getElementById("showHoroscope").innerHTML = result
+        } else {
+            document.getElementById("showHoroscope").innerHTML = ""      
+            console.log(result)
+        }
+    })
+}
+
+printHoroscope()
