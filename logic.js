@@ -2,17 +2,21 @@
  
 function add() {
     let inputDate = document.getElementById('input').value
-    let url = "./serverSide/addHoroscope.php"
-    let method = "POST"
-    
-    let formData = new FormData()
-    formData.set("date", inputDate) 
-    makeRequest(url, method, formData, (result) => {
-        console.log(result);       
-        if(result) {
-            printHoroscope() 
-        }
-    })
+    if(inputDate.length) {
+        let url = "./serverSide/addHoroscope.php"
+        let method = "POST"
+        
+        let formData = new FormData()
+        formData.set("date", inputDate) 
+        makeRequest(url, method, formData, (result) => {
+            console.log(result);       
+            if(result) {
+                printHoroscope() 
+            }
+        })
+    } else {
+        console.log("Välj datum först")
+    }
 }
  
 function update() {
@@ -68,5 +72,4 @@ function printHoroscope() {
         }
     })
 }
-
 printHoroscope()
