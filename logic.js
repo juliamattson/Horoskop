@@ -1,5 +1,4 @@
-// Funktion för inputvalue
- 
+// Funktion för att lägga till horoskop 
 function add() {
     let inputDate = document.getElementById('input').value
     if(inputDate.length) {
@@ -15,10 +14,11 @@ function add() {
             }
         })
     } else {
-        console.log("Välj datum först")
+        console.log("Välj datum först") // Om inget datum valts i input:en
     }
 }
  
+// Funktion för att uppdatera horoskop
 function update() {
     let inputDate = document.getElementById('input').value
     let url = "./serverSide/updateHoroscope.php"
@@ -34,6 +34,7 @@ function update() {
     })
 }
  
+// Funktion för att radera horoskop
 function erase() {  
     let inputDate = document.getElementById('input').value
     let url = "./serverSide/deleteHoroscope.php"
@@ -49,6 +50,7 @@ function erase() {
     })
 }
  
+// Funktion innehållande fetch-anropet
 function makeRequest(url, method, formData, callback) {
     fetch(url, {
         method: method,
@@ -62,6 +64,7 @@ function makeRequest(url, method, formData, callback) {
     })   
 }
 
+// Funktion för att visa horoskopet på hemsidan, alternativt tömma div:en efter klick på "radera"-knappen
 function printHoroscope() {
     makeRequest("./serverSide/viewHoroscope.php", "GET", undefined, (result) => {
         if(result) {
